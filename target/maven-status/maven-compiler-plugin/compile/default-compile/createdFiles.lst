@@ -1,2 +1,12 @@
-com\pablo\blasco\monopoly\controller\JuegoController.class
+com\pablo\blasco\monopoly\models\Compra.class
+com\pablo\blasco\monopoly\models\Especial.class
+com\pablo\blasco\monopoly\models\Banca.class
+com\pablo\blasco\monopoly\models\Juego.class
+com\pablo\blasco\monopoly\service\FicheroProp.class
+com\pablo\blasco\monopoly\models\Jugador.class
 com\pablo\blasco\monopoly\MonopolyApplication.class
+com\pablo\blasco\monopoly\models\Jugadores.class
+com\pablo\blasco\monopoly\models\Calle.class
+com\pablo\blasco\monopoly\service\GestorCompraPaga.class
+com\pablo\blasco\monopoly\controller\JuegoController.class
+com\pablo\blasco\monopoly\models\Casilla.class

@@ -2,9 +2,51 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 </head>
 <body>
-<p th:text="|Hello, ${name}!|" />
+<div th:replace="fragments/header :: header">&nbsp;</div>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-lg-8">
+            <p class="h2">Bienvenido al juego del monopoly</p>
+            <span>Introduce el nombre de los jugadores y la ficha a elegir.</span>
+            <form action="/iniciojuego" method="post">
+                <label for="nombreJugador1" class="form-label">Nombre Jugador 1</label>
+                <input type="text" id="nombreJugador1" class="form-control" aria-describedby="nombreJugador1Helper">
+                <div id="nombreJugador1Helper" class="form-text">
+                    Your password must be 4-10 characters long, contain letters and numbers, and must not contain special characters, or emoji.
+                </div>
+                <label for="nombreJugador2" class="form-label">Nombre Jugador 2</label>
+                <input type="text" id="nombreJugador2" class="form-control" aria-describedby="nombreJugador2helper">
+                <div id="nombreJugador2helper" class="form-text">
+                    Your password must be 4-10 characters long, contain letters and numbers, and must not contain special characters, or emoji.
+                </div>
+                <label for="nombreJugador3" class="form-label">Nombre Jugador 3</label>
+                <input type="text" id="nombreJugador3" class="form-control" aria-describedby="nombreJugador3Helper">
+                <div id="nombreJugador3Helper" class="form-text">
+                    Your password must be 4-10 characters long, contain letters and numbers, and must not contain special characters, or emoji.
+                </div>
+                <label for="nombreJugador4" class="form-label">Nombre Jugador 4</label>
+                <input type="text" id="nombreJugador4" class="form-control" aria-describedby="nombreJugador4Helper">
+                <div id="nombreJugador4Helper" class="form-text">
+                    Your password must be 4-10 characters long, contain letters and numbers, and must not contain special characters, or emoji.
+                </div>
+                <button type="submit" class="btn btn-primary">Jugar!</button>
+        </form>
+    </div>
+    <div class="col col-lg-4">
+        <img src="/images/monopolyTablero.jpg" title="Tablero" alt="Tablero"/>
+    </div>
+</div>
+</div>
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
 </html>

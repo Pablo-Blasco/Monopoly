@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<!--/*  Multiple fragments may be defined in one file */-->
+<div th:fragment="footer" th:align="center">
+  &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2024</span>
+  <span>Pablo Blasco  Monopoly</span>
+</div>
+
+</body>
+</html>
