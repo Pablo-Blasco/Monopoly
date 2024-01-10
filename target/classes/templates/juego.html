@@ -8,35 +8,87 @@
 
 </head>
 <body>
-<div th:replace="fragments/header :: header">&nbsp;</div>
+<div th:replace="fragments/header :: header"></div>
 <div class="container">
     <div class="row justify-content-md-center">
-        <div class="col-lg-8">
+        <div class="col" th:classappend="${#arrays.isEmpty(compras)}? 'col-lg-8'">
             <p class="h2">Bienvenido al juego del monopoly</p>
-            <span>Jugadores     </span>
+            <h3>Jugadores</h3>
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Nombre de JUgador</th>
+                    <th scope="col">Nombre de Jugador</th>
                     <th scope="col">Dinero</th>
                     <th scope="col">Posicion</th>
-
                 </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                 <tr th:each="jugador : ${jugadore}" class="row" >
-                     <td th:text="${jugador.numJuga}"></td>
-                     <td th:text="${jugador.posicion}"></td>
-                     <td th:text="${jugador.dinero}"></td>
-<
+                <tr th:each="jugador : ${jugadores}" th:class="${jugador.esMiTurno}==true ? 'table-success':'table-danger'">
+                    <td th:if="${jugador.nombre} != null"><span th:text="${jugador.nombre}"></span></td>
+                    <td th:if="${jugador.dinero} != null"><span th:text="${jugador.dinero}"></span></td>
+                    <td th:text="${jugador.posicion}"></td>
+                    <
                 </tr>
                 </tbody>
             </table>
+            <div class="col" th:if="${dado ==0 }">
+                <form method="GET" action="/tirardado">
+                    <span th:each="jugador : ${jugadores}">
+                        <span th:if="${jugador.esMiTurno}">
+                            <input type="hidden" name="numjugador" th:value="${jugador.numJuga}"/>
+                        </span>
+                    </span>
+                    <button type="submit" class="btn btn-primary">Tirar dado!</button>
+                </form>
 
+            </div>
+            <div class="col" th:if="${calle} != null ">
+                <div th:replace="fragments/calle :: calle"></div>
+                <form action="/compra" method="GET" id="formCompra">
+                    <span th:each="jugador : ${jugadores}">
+                        <span th:if="${jugador.esMiTurno}">
+                            <input type="hidden" name="numjugador" th:value="${jugador.numJuga}"/>
+                            <input type="hidden" id="compratext" name="compra" />
+                        </span>
+                    </span>
+                    <span th:object="${calle}">
+                        <span th:if="*{tipoCalle} != 'E' and *{estaCompr} != true and *{tipoCalle} != 'I' " >
+                            <button id="compra" onclick="comprar()" class="btn btn-primary">Comprar!!</button>
+                            <button id="cancelar" onclick="cancelar()" class="btn btn-primary">No comprar!!</button>
+                        </span>
+                    </span>
+                </form>
+                <div class="col">
+                    <p th:text="${mensaje}"></p>
+                </div>
+            </div>
+            <div class="col" th:unless="${#arrays.isEmpty(compras)}">
+                <h2>Compras Realizadas</h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td>Jugador</td>
+                        <td>Calle</td>
+                        <td>Posicion</td>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="compra:${compras}">
+                        <td th:object="${compra.jugador}"><span th:text="*{nombre}"></span></td>
+                        <td th:object="${compra.calle}"><span th:text="*{nombreCalle}"></span></td>
+                        <td th:text="${compra.posicion}"></td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
         </div>
-        <div class="col col-lg-4">
+        <div class="col" th:classappend="${#arrays.isEmpty(compras)}?'col-lg-4'">
             <img src="/images/monopolyTablero.jpg" title="Tablero" alt="Tablero"/>
         </div>
+        </div>
+
     </div>
 </div>
 <div th:replace="fragments/footer :: footer">&nbsp;</div>
@@ -44,5 +96,21 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+<script>
+
+   function comprar(){
+       document.getElementById("compratext").value = "s";
+      document.getElementById("myform").submit();
+    }
+     function cancelar(){
+      document.getElementById("compratext").value = "n";
+      document.getElementById("myform").submit();
+    }
+     function pagar(){
+      console.log("pagar");
+    }
+
+
+</script>
 
 </html>
