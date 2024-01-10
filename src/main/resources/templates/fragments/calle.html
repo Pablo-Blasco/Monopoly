@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<!--/*  Multiple fragments may be defined in one file */-->
+<div class="col" th:fragment="calle">
+  &copy;<table class="table">
+  <thead>
+  <tr>
+    <th>Nombre Calle</th>
+    <th>Precio Compra</th>
+    <th>Precio Estancia</th>
+    <th>Esta Comprada</th>
+    <th>Posicion</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:object="${calle}">
+    <td th:text="*{nombreCalle}"></td>
+    <td th:text="*{coste}"></td>
+    <td th:text="*{pagarAlCaer}"></td>
+    <td th:text="*{estaCompr}"></td>
+    <td th:text="*{posicion}"></td>
+  </tr>
+  </tbody>
+
+  </table>
+</div>
+
+</body>
+</html>

@@ -11,8 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Jugadores {
-    private Jugador nombreJugador1;
-    private Jugador nombreJugador2;
-    private Jugador nombreJugador3;
-    private Jugador nombreJugador4;
+    private String nombreJugador1;
+    private String nombreJugador2;
+    private String nombreJugador3;
+    private String nombreJugador4;
 }
